@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>weather</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Weather</h1>
+      <p class="error">invaild input</p>
+      <input type="text"  id="city" placeholder="City">
+      <button class="submit" type="submit">Submit</button>
+    
+    <div class="weather">
+      <img src="./sunny_s_cloudy.png" alt="">
+      <h1 class="temp">20°C</h1>
+      <h2 class="city">new york</h2>
+      <div class="col">
+        <div class="humidity-info">
+          <img src="./humidity.svg" alt="">
+          <p class="humidity">50%</p>
+          <p>humidity</p>
+        </div> 
+        <div class="wind-info">
+          <p class="wind">15 km/h</p>
+          <p>wind speed</p>
+        </div>
+      </div>
+    </div>
+  <script>
+    const apiKey='b27c09a732ef12b7a34039bbf0aee69d';
+    const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+    const submit=document.querySelector('.submit');
+    const city=document.querySelector('#city').value;
+    async function checkWeather(city){
+      const response=await fetch(apiUrl+city+`&appid=${apiKey}`);
+      if(response.status==404||response.status==400){
+        document.querySelector('.error').style.display='flex';
+        document.querySelector('.weather').style.display='none';
+        return;
+      }
+      let data=await response.json();
+      document.querySelector('.city').innerHTML=data.name;
+      document.querySelector('.temp').innerHTML=Math.round(data.main.temp)+'°C';
+      document.querySelector('.humidity').innerHTML=data.main.humidity+'%';
+      document.querySelector('.wind').innerHTML=data.wind.speed+'km/h';
+      if(data.weather[0].main=='Clouds'){
+        document.querySelector('img').src='./cloudy.png';
+      }
+      else if(data.weather[0].main=='Rain'){
+        document.querySelector('img').src='./rain.png';
+      }
+      else if(data.weather[0].main=='Clear'){
+        document.querySelector('img').src='./sunny_s_cloudy.png';
+      } else if (data.weather[0].main=='sunny'){
+        document.querySelector('img').src='./sunny.png';
+      }
+      else{
+        document.querySelector('img').src='./cloudy.png';
+      }
+      document.querySelector('.weather').style.display='flex';
+      document.querySelector('.error').style.display='none';
+  
+    }
+    submit.addEventListener('click',()=>{
+      
+      let city=document.querySelector('#city').value;
+      checkWeather(city);
+      
+      
+
+    });
+
+    
+    
+
+  </script>
+</body>
+</html>

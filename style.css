@@ -1,0 +1,103 @@
+body{
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  background-color:rgb(17, 113, 157);
+  height:500px;
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  align-items: center;
+  background-color: rgb(69, 182, 186);
+  padding:20px;
+  border-radius: 10px;
+}
+.card input{
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid rgb(17, 113, 157);
+  margin-bottom: 10px;
+}
+.card button{
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid rgb(17, 113, 157);
+  background-color: rgb(17, 113, 157);
+  color: white;
+}
+.card button:hover{
+  background-color: rgb(249, 255, 255);
+  color: black;
+}
+.card .city-name,.city-temp,.city-wearther,.city-humidity,.city-wind{
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+.weather{
+  display:none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(69, 182, 186);
+  padding: 20px;
+  width: 100%;
+  flex-direction: column;
+}
+.weather h1,h2{
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  text-align: center;
+  margin:5px;
+  font-size:18px;
+  
+}
+.humidity-info{
+  display: flex;
+  width: 100%;
+  justify-content:space-around;
+  align-items:center;
+  flex-direction: row;
+
+}
+.humidity-info p{
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  margin:5px;
+  font-size:18px;
+}
+.wind-info{
+  display: flex;
+  width: 100%;
+  justify-content:space-around;
+  align-items:center;
+  flex-direction: row;
+
+}
+.wind-info p{
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  margin:5px;
+  font-size:18px;
+} 
+.error{
+  display:none;
+  color: rgb(193, 38, 38);
+  font-family: Arial, Helvetica, sans-serif;
+  text-align:start;
+  font-size: 12px;
+}
+
+
+@keyframes scale {
+  from{
+    transform: scale(0);
+  }
+  to{
+    transform: scale(1);
+  }
+}
